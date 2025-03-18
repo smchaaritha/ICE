@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ICE-5: Loading and Parsing CSV Data with D3.js</title>
+    <script src="https://unpkg.com/d3@7.0.0/dist/d3.min.js"></script>
+    <style>
+      pre {
+        font-size: 2em;
+        text-align: center;
+        background-color: #e0ffff;
+      }
+      h1 {
+        font-size: 3em;
+        background-color: #6495ed;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>We are learning how to load and parse data with D3 today!</h1>
+    <pre id="message-container"></pre>
+
+    <script>
+      const csvUrl =
+        "https://gist.githubusercontent.com/smchaaritha/8e2dd08b343860d7cd6bb7db6ffdb7d8/raw/122b9c980c68db53892576cb41fef40271ccc405/Student%2520Depression%2520Dataset%25204.csv";
+
+      d3.csv(csvUrl).then((data) => {
+        let message = "The data contains:\n";
+        message += Math.round(d3.csvFormat(data).length / 1024) + " kB\n";
+        message += data.length + " rows\n";
+        message += data.columns.length + " columns";
+
+        document.getElementById("message-container").textContent = message;
+      });
+    </script>
+  </body>
+</html>
